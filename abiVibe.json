@@ -1,0 +1,1210 @@
+[
+    {
+        "type": "constructor",
+        "inputs": [
+            {
+                "name": "_vibeERC20Impl",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_vibeERC721Impl",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_vibeERC1155Impl",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_royaltyReceiverImpl",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_NFTMintSale",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_NFTMintSaleMultiple",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_nftMintSaleWhitelisting",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_nftMintSaleWhitelistingMultiple",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "_airdropImpl",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "tokenHelperStruct",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "_simpleFactory",
+                        "type": "address",
+                        "internalType": "contract SimpleFactory"
+                    }
+                ],
+                "internalType": "struct VibeFactory.TokenHelperStructs"
+            }
+        ],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "ClaimantDropCreated",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "ClaimantDropLimitedCreated",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "ERC1155Created",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "ERC20Created",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "ERC721Created",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "LogAirdrop",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "LogNFTMintSale",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "LogNFTMintSaleMultiple",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "LogRoyaltyReceiver",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "VibeWhitelistSaleCreated",
+        "type": "event",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "indexed": false,
+                "internalType": "bytes"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "name": "airdropImpl",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "batch",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "calls",
+                "type": "bytes[]",
+                "internalType": "bytes[]"
+            },
+            {
+                "name": "revertOnFail",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "payable"
+    },
+    {
+        "name": "createAirdrop",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "nftInfo",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "symbol",
+                        "type": "string",
+                        "internalType": "string"
+                    },
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "internalType": "string"
+                    },
+                    {
+                        "name": "baseURI",
+                        "type": "string",
+                        "internalType": "string"
+                    }
+                ],
+                "internalType": "struct VibeFactory.NFTInformation"
+            },
+            {
+                "name": "royaltyInfo",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "royaltyReceiver_",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "royaltyRate_",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "derivativeRoyaltyRate",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "isDerivativeAllowed",
+                        "type": "bool",
+                        "internalType": "bool"
+                    }
+                ],
+                "internalType": "struct VibeFactory.RoyaltyInformation"
+            },
+            {
+                "name": "merkleInformation",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "merkleRoot_",
+                        "type": "bytes32",
+                        "internalType": "bytes32"
+                    },
+                    {
+                        "name": "externalURI_",
+                        "type": "string",
+                        "internalType": "string"
+                    },
+                    {
+                        "name": "maxNonWhitelistedPerUser",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                    }
+                ],
+                "internalType": "struct VibeFactory.MerkleInformation"
+            },
+            {
+                "name": "originalNFT",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "airdropInfo",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "beginTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "paymentToken",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "fee",
+                        "type": "uint96",
+                        "internalType": "uint96"
+                    },
+                    {
+                        "name": "isPhysical",
+                        "type": "bool",
+                        "internalType": "bool"
+                    },
+                    {
+                        "name": "specifyId",
+                        "type": "bool",
+                        "internalType": "bool"
+                    }
+                ],
+                "internalType": "struct VibeFactory.AirdropInformation"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "nft",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "proxy",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createERC1155",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "uri",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createERC20",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createERC721",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "baseURI",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "royaltyReceiver_",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "royaltyRate_",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "derivativeRoyaltyRate",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "isDerivativeAllowed",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "owner",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "proxy",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSale",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "baseURI",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "royaltyReceiver_",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "royaltyRate_",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "derivativeRoyaltyRate",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "isDerivativeAllowed",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "maxMint_",
+                "type": "uint64",
+                "internalType": "uint64"
+            },
+            {
+                "name": "beginTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "endTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "price_",
+                "type": "uint128",
+                "internalType": "uint128"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSaleForExisting",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "nft",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "maxMint_",
+                "type": "uint64",
+                "internalType": "uint64"
+            },
+            {
+                "name": "beginTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "endTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "price_",
+                "type": "uint128",
+                "internalType": "uint128"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSaleMultiple",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "baseURI",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "royaltyReceiver_",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "royaltyRate_",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "derivativeRoyaltyRate",
+                "type": "uint16",
+                "internalType": "uint16"
+            },
+            {
+                "name": "isDerivativeAllowed",
+                "type": "bool",
+                "internalType": "bool"
+            },
+            {
+                "name": "beginTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "endTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "tiers_",
+                "type": "tuple[]",
+                "components": [
+                    {
+                        "name": "price",
+                        "type": "uint128",
+                        "internalType": "uint128"
+                    },
+                    {
+                        "name": "beginId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "currentId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    }
+                ],
+                "internalType": "struct VibeFactory.TierInfo[]"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSaleMultipleForExisting",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "nft",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "beginTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "endTime_",
+                "type": "uint32",
+                "internalType": "uint32"
+            },
+            {
+                "name": "tiers_",
+                "type": "tuple[]",
+                "components": [
+                    {
+                        "name": "price",
+                        "type": "uint128",
+                        "internalType": "uint128"
+                    },
+                    {
+                        "name": "beginId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "currentId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    }
+                ],
+                "internalType": "struct VibeFactory.TierInfo[]"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSaleMultipleWhitelisting",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "merkleRoot_",
+                "type": "bytes32[]",
+                "internalType": "bytes32[]"
+            },
+            {
+                "name": "externalURI_",
+                "type": "string[]",
+                "internalType": "string[]"
+            },
+            {
+                "name": "maxNonWhitelistedPerUser",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "baseURI",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "royaltyInfo",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "royaltyReceiver_",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "royaltyRate_",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "derivativeRoyaltyRate",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "isDerivativeAllowed",
+                        "type": "bool",
+                        "internalType": "bool"
+                    }
+                ],
+                "internalType": "struct VibeFactory.RoyaltyInformation"
+            },
+            {
+                "name": "timeframe",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "beginTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    }
+                ],
+                "internalType": "struct VibeFactory.Timeframe"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            },
+            {
+                "name": "tiers_",
+                "type": "tuple[]",
+                "components": [
+                    {
+                        "name": "price",
+                        "type": "uint128",
+                        "internalType": "uint128"
+                    },
+                    {
+                        "name": "beginId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "currentId",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    }
+                ],
+                "internalType": "struct VibeFactory.TierInfo[]"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createNFTMintSaleWhitelisting",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "symbol",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "baseURI",
+                "type": "string",
+                "internalType": "string"
+            },
+            {
+                "name": "royaltyInfo",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "royaltyReceiver_",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "royaltyRate_",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "derivativeRoyaltyRate",
+                        "type": "uint16",
+                        "internalType": "uint16"
+                    },
+                    {
+                        "name": "isDerivativeAllowed",
+                        "type": "bool",
+                        "internalType": "bool"
+                    }
+                ],
+                "internalType": "struct VibeFactory.RoyaltyInformation"
+            },
+            {
+                "name": "maxMint_",
+                "type": "uint64",
+                "internalType": "uint64"
+            },
+            {
+                "name": "timeframe",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "beginTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    },
+                    {
+                        "name": "endTime",
+                        "type": "uint32",
+                        "internalType": "uint32"
+                    }
+                ],
+                "internalType": "struct VibeFactory.Timeframe"
+            },
+            {
+                "name": "price_",
+                "type": "uint128",
+                "internalType": "uint128"
+            },
+            {
+                "name": "paymentToken_",
+                "type": "address",
+                "internalType": "contract IERC20"
+            },
+            {
+                "name": "merkleInformation",
+                "type": "tuple",
+                "components": [
+                    {
+                        "name": "merkleRoot_",
+                        "type": "bytes32",
+                        "internalType": "bytes32"
+                    },
+                    {
+                        "name": "externalURI_",
+                        "type": "string",
+                        "internalType": "string"
+                    },
+                    {
+                        "name": "maxNonWhitelistedPerUser",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                    }
+                ],
+                "internalType": "struct VibeFactory.MerkleInformation"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "createRoyaltyReceiver",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "recipientBPS_",
+                "type": "uint256[]",
+                "internalType": "uint256[]"
+            },
+            {
+                "name": "recipients_",
+                "type": "address[]",
+                "internalType": "address[]"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "factory",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "contract SimpleFactory"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "nftMintSale",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "nftMintSaleMultiple",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "nftMintSaleWhitelisting",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "nftMintSaleWhitelistingMultiple",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "permitToken",
+        "type": "function",
+        "inputs": [
+            {
+                "name": "token",
+                "type": "address",
+                "internalType": "contract IERC20"
+            },
+            {
+                "name": "from",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "to",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "amount",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "deadline",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "v",
+                "type": "uint8",
+                "internalType": "uint8"
+            },
+            {
+                "name": "r",
+                "type": "bytes32",
+                "internalType": "bytes32"
+            },
+            {
+                "name": "s",
+                "type": "bytes32",
+                "internalType": "bytes32"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "name": "royaltyReceiverImpl",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "vibeERC1155Impl",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "vibeERC20Impl",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "name": "vibeERC721Impl",
+        "type": "function",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
+    }
+]
