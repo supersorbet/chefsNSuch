@@ -183,8 +183,29 @@ contract zeBASED is Ownable, ReentrancyGuard {
                 staking: _staking,
                 maxStake: _maxStake,
                 rewardsStartTime: _rewardsStartTime
-            })
-        );
+            })function getPoolInfo(uint256 _pid)
+            public
+            view
+            returns (
+                address lpToken,
+                uint256 allocPoint,
+                IRewarderV2 rewarder,
+                uint256 lastRewardTime,
+                uint256 accBananaPerShare,
+                uint256 totalStaked,
+                uint16 depositFeeBP
+            )
+        {
+            return (
+                address(poolInfo[_pid].stakeToken),
+                poolInfo[_pid].allocPoint,
+                poolInfo[_pid].rewarder,
+                poolInfo[_pid].lastRewardTime,
+                poolInfo[_pid].accBananaPerShare,
+                poolInfo[_pid].totalStaked,
+                poolInfo[_pid].depositFeeBP
+            );
+        }
     }
 
     /// @notice Update the given pool's REWARD allocation point and `IRewarder` contract. Can only be called by the owner.
@@ -329,6 +350,32 @@ contract zeBASED is Ownable, ReentrancyGuard {
             uint256(user.rewardDebt);
         return (calculatedPendingReward * rewardMultiplier) / 100; // Assuming rewardMultiplier is a percentage
     }
+
+
+    function getPoolInfo(uint256 _pid)
+    public
+    view
+    returns (
+        address lpTokenAddress,
+        uint256 allocPoint,
+        uint256 lastRewardTime,
+        uint256 accRewardPerShare,
+        uint256 maxStake,
+        uint256 rewardsStartTime,
+        bool stakingActive
+    )
+{
+    PoolInfo storage pool = poolInfo[_pid];
+    return (
+        address(lpToken[_pid]), // Assuming lpToken is an array of IERC20 tokens
+        pool.allocPoint,
+        pool.lastRewardTime,
+        pool.accRewardPerShare,
+        pool.maxStake,
+        pool.rewardsStartTime, // The start time for rewards for this pool
+        pool.staking // Indicates if staking is active for this pool
+    );
+}
 
     function getUserStakeInfo(uint256 pid, address userAddress)
         external
